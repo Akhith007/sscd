@@ -1,0 +1,48 @@
+program 6A
+_________
+
+%{
+#include<stdio.h>
+int sl=0;
+int ml=0;
+%}
+%%
+"/*".*"*/" ml++;
+"//".* sl++;
+%%
+
+main()
+{
+yyin = fopen("input.c","r");
+yyout = fopen("output.c","w");
+yylex();
+fclose(yyin);
+fclose(yyout);
+printf("\n Number of single line comments are = %d\n",sl);
+printf("\n Number of multi line comments are = %d\n",ml);
+}
+
+//inputfile:
+
+main()
+{
+/*hello*/
+int a.b.c;
+/*&hello*/
+/**sdhgj*/
+/*#how r u*/
+//hello
+////ho
+//hi
+printf("hjhjhj");
+}
+
+//output file
+
+main()
+{
+int a.b.c;
+printf("hjhjhj");
+}
+
+
